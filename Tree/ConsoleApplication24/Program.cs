@@ -17,7 +17,7 @@ namespace ConsoleApplication24
                 t.Insert(rnd.Next(1, 100));
             t.Insert(10);
             int min = t.Minimum(t.root).inf;
-            t.WriteTree("output.txt");
+            t.GoWidth();
             Console.WriteLine(min);
 
             int p = t.Parent(t.Search(10), 2).inf;//проверка правильности метода Parent

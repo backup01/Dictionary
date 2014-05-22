@@ -80,6 +80,36 @@ namespace ConsoleApplication24
             }
         }
 
+        public void GoWidth()
+        {
+            FileStream f = new FileStream("output.txt", FileMode.Create);
+            StreamWriter w = new StreamWriter(f);
+            w.WriteLine("digraph G {");
+            root.WriteNode(w);
+
+            int k = 1;
+
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+            Node x;
+            while (queue.Count != 0)
+            {
+                x = queue.Dequeue();
+
+                w.WriteLine(Convert.ToString(x.inf) + "[" + "label" + "=" + "\"" + Convert.ToString(x.inf) + "," + k + "\"" + "]");
+                k++;
+
+                if (x.left != null)
+                    queue.Enqueue(x.left);
+                if (x.right != null)
+                    queue.Enqueue(x.right);
+            }
+
+            w.WriteLine("}");
+            w.Close();
+            f.Close();
+        }
+
         public Node Minimum(Node x)
         {
             Node p = x;
